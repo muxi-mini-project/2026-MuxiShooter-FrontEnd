@@ -1,4 +1,4 @@
-import { SKILL_POOL } from '../config/skillPool'
+import { SKILL_POOL } from './skill/skillPool'
 
 /**
  * 根据当前技能状态，抽取可选技能

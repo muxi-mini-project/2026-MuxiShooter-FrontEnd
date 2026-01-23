@@ -18,6 +18,15 @@ export const useGameStore = create((set, get) => ({
   isLevelUp: false,
   pauseGame: false,
 
+
+  /* ================= 战斗数值 ================= */
+  combatStats: {
+    attack: 0,             // 额外攻击力
+    damageMultiplier: 1,   // 伤害倍率
+    critRate: 0.05,        // 暴击率
+    critDamage: 1.5        // 暴击伤害倍率
+  },
+
   /* ================= 技能系统 ================= */
 
   skillLevels: {},

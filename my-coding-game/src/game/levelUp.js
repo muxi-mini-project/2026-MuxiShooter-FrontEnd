@@ -1,5 +1,5 @@
 // src/game/levelUp.js
-import { SKILL_CATEGORIES } from '../config/skillCategories'
+import { SKILL_CATEGORIES } from './skill/skillCategories'
 
 export function getSkillChoices(state) {
   const picked = Object.keys(state.skillLevels)

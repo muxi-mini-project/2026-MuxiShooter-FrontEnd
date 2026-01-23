@@ -8,10 +8,11 @@
  * @param {Object} enemy  敌人对象
  * @param {Object} store  useGameStore.getState()
  */
+
 export function handleBulletHit(bullet, enemy, store) {
   if (!bullet.alive || !enemy.alive) return
-
-  const { combatStats } = store
+  
+  const { combatStats, gainExp } = store
 
   /* ================= 1. 基础伤害 ================= */
 
@@ -48,7 +49,7 @@ export function handleBulletHit(bullet, enemy, store) {
 
   if (enemy.hp <= 0) {
     enemy.alive = false
-    onEnemyKilled(enemy, store)
+    gainExp(enemy.exp || 0)
   }
 }
 

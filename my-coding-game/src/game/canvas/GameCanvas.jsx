@@ -11,11 +11,13 @@ const WIDTH = 360
 const HEIGHT = 640
 const DEFENSE_LINE = 520
 
+
 export default function GameCanvas() {
   const canvasRef = useRef(null)
   const lastTimeRef = useRef(0)
   const fireTimerRef = useRef(0)
   const waveControllerRef = useRef(null)
+  const store = useGameStore.getState()
 
   /* ================= 战斗态（不进 store） ================= */
 
@@ -84,14 +86,24 @@ export default function GameCanvas() {
     if (fireTimerRef.current >= interval) {
       fireBullets({
         player,
+        bullets,
+        bulletType: 'basic',
+
         baseStats: {
-          attack: 0,
-          critRate: 0.1,
-          critDmg: 1
+          attack: 1,
+          bulletSpeed: 420,
+          bulletSize: 4,
+          critRate: 0,
+          critDmg: 1.5
         },
-        skillStats: {},
-        bullets
+
+        skillStats: {
+          rows: 1,
+          cols: 1,
+          mirror: 0
+        }
       })
+
       fireTimerRef.current = 0
     }
 
@@ -123,7 +135,7 @@ export default function GameCanvas() {
         const dist = Math.hypot(dx, dy)
 
         if (dist < b.size + e.size * e.scale) {
-          handleBulletHit(b, e)
+          handleBulletHit(b, e,store)
 
           if (e.hp <= 0) {
             e.alive = false
